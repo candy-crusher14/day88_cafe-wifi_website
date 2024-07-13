@@ -1,0 +1,37 @@
+{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block title %}Add Cafe{% endblock %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 my-5">
+
+      <h1>Add a new cafe into the database</h1>
+
+      {{ render_form(form) }}
+
+      <!-- This is where your WTForm will go -->
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  {% include  'footer.html' %}
+
+
+{% endblock %}
+

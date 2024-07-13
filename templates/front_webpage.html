@@ -1,0 +1,101 @@
+{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block title %}Hotels Nearby {% endblock %}
+
+
+{% block content %}
+
+<body>
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h1 class="cursive"><em>Cafes</em></h1>
+             {%  if current_user.is_authenticated %}
+                <a href="{{ url_for('add_cafe') }}" class="btn  btn-secondary mt-3 text-end" target="_blank"><em>Add Cafe</em></a>
+        {% endif %}
+
+            <div class="d-inline">
+
+                <span class="badge rounded-pill text-bg-dark fs-6">
+                    1 - 12 of 21
+                </span>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for cafe in cafes %}
+                <div class="col py-3">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name }}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cafe.name }}</h5>
+                            <p class="card-text">{{ cafe.location }}</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Has Sockets: {{ '✅' if cafe.has_sockets else '❌' }}</li>
+                                <li class="list-group-item">Has Toilet: {{ '✅' if cafe.has_toilet else '❌' }}</li>
+                                <li class="list-group-item">Has WiFi: {{ '✅' if cafe.has_wifi else '❌' }}</li>
+                                <li class="list-group-item">Can Take Calls: {{ '✅' if cafe.can_take_calls else '❌' }}</li>
+                            </ul>
+                            <a href="{{ url_for('show_info', cafe_id = cafe.id) }}" class="btn btn-outline-dark  mt-3" target="_blank">More Info</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            {{ pagination.links }}
+        </div>
+
+
+
+
+
+
+
+<!--     <div class="container mt-5">-->
+<!--        <div class="row">-->
+<!--            {% for cafe in cafe_data %}-->
+<!--                <div class="col-md-12 mb-4">-->
+<!--                    <div class="card">-->
+<!--                        <div class="row no-gutters">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <img src="{{ cafe.img_url }}" class="card-img-left img-fluid" alt="{{ cafe.name }}">-->
+<!--                            </div>-->
+<!--                            <div class="col-md-8">-->
+<!--                                <div class="card-body">-->
+<!--                                    <h4 class="card-title fw-bold">{{ cafe.name }}</h4>-->
+<!--                                    <p class="card-text">Location: {{ cafe.location }}</p>-->
+<!--                                    <p class="card-text">Has Sockets: {{ '✅' if cafe.has_sockets else '❌' }}</p>-->
+<!--                                    <p class="card-text">Has Toilet: {{ '✅' if cafe.has_toilet else '❌' }}</p>-->
+<!--                                    <p class="card-text">Has WiFi: {{ '✅' if cafe.has_wifi else '❌' }}</p>-->
+<!--                                    <p class="card-text">Can Take Calls: {{ '✅' if cafe.can_take_calls else '❌' }}</p>-->
+<!--                                    <a href="{{ cafe.map_url }}" class="btn btn-primary" target="_blank">View Google Map Location</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+
+
+
+
+
+  {% include  'footer.html' %}
+
+
+{% endblock %}
+
