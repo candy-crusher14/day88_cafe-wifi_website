@@ -19,7 +19,7 @@ from flask_migrate import Migrate
 from forms import AddCafeForm, LoginForm, CommentForm, RegisterForm
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = 'Put Secret Key'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
